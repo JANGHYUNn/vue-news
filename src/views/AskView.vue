@@ -1,26 +1,22 @@
 <template>
   <div>
-      <div v-for="ask in askData">{{ ask.title }}</div>
+      <div v-for="ask in fetchedAsk">{{ ask.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchAskList } from '../api/index.js'
+import { mapGetters } from 'vuex'
 
 export default {
-    data() {
-        return {
-            askData: []
-        }
+    computed: {
+        // ...mapState({
+        //     ask: state => state.ask
+        // })
+
+        ...mapGetters(['fetchedAsk'])
     },
     created() {
-        fetchAskList()
-        .then( result => {
-            this.askData = result.data;
-        })
-        .catch( error => {
-            console.log(error);
-        })
+        this.$store.dispatch('FETCH_ASK');
     }
 }
 </script>

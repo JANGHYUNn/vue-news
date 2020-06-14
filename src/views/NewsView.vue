@@ -1,26 +1,18 @@
 <template>
   <div>
-      <div v-for="news in newsData">{{ news.title }}</div>
+      <div v-for="news in fetchedNews">{{ news.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js'
+import { mapGetters } from 'vuex'
 
 export default {
-    data() {
-        return {
-            newsData: []
-        }
+    computed: {
+        ...mapGetters(['fetchedNews'])
     },
     created() {
-        fetchNewsList()
-        .then( result => {
-            this.newsData = result.data;
-        })
-        .catch( error => {
-            console.log(error);
-        })
+       this.$store.dispatch('FETCH_NEWS');
     }
 }
 </script>
