@@ -9,6 +9,7 @@ import UserView from '../views/UserView';
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: '/',
