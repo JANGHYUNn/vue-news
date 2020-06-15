@@ -1,6 +1,14 @@
 <template>
   <div>
-      <div v-for="news in fetchedNews">{{ news.title }}</div>
+      <p v-for="(news, index) in fetchedNews" v-bind:key="index">
+        <a v-bind:href="news.url">
+            {{ news.title }}
+        </a>
+        <small>
+            {{ news.time_ago }} by
+            <router-link v-bind:to="`/user/${news.user}`">{{ news.user }}</router-link>
+        </small>
+      </p>
   </div>
 </template>
 

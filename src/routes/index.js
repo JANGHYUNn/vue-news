@@ -7,12 +7,13 @@ import ItemView from '../views/ItemView';
 import UserView from '../views/UserView';
 
 Vue.use(VueRouter);
+const mode = process.env.NODE_ENV;
 
 export const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: mode === 'production' ? '/vue-news' : '/',
             redirect: '/news'
         },
         {
@@ -32,7 +33,7 @@ export const router = new VueRouter({
             component: ItemView
         },
         {
-            path: '/user',
+            path: '/user/:id',
             component: UserView
         }
     ]
