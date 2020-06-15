@@ -29,11 +29,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #43b883;
-  text-decoration: underline;
-}
-
 a.router-link-exact-active {
   text-decoration: underline;
 }
@@ -46,5 +41,9 @@ a.router-link-exact-active {
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 </style>
