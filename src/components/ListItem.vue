@@ -11,13 +11,20 @@
         <template v-else>
           <p class="list-title">
             <a :href="item.url">
-              <router-link v-bind:to="`/item/${item.id}`">{{ item.title }}</router-link>
+              <router-link v-bind:to="`/vue-news/item/${item.id}`">{{
+                item.title
+              }}</router-link>
             </a>
           </p>
         </template>
         <small class="link-text">
           {{ item.time_ago }} by
-          <router-link v-if="item.user" class="link-text" :to="`/user/${item.user}`">{{ item.user }}</router-link>
+          <router-link
+            v-if="item.user"
+            class="link-text"
+            :to="`/vue-news/user/${item.user}`"
+            >{{ item.user }}</router-link
+          >
           <a v-else :href="item.url">{{ item.domain }}</a>
         </small>
       </div>
@@ -31,29 +38,29 @@ export default {
     listItems() {
       const name = this.$route.name;
 
-      if (name === "news") return this.$store.state.news;
-      else if (name === "ask") return this.$store.state.ask;
+      if (name === 'news') return this.$store.state.news;
+      else if (name === 'ask') return this.$store.state.ask;
       else return this.$store.state.jobs;
-    }
+    },
   },
   created() {
     const name = this.$route.name;
     let actionName;
 
     switch (name) {
-      case "news":
-        actionName = "FETCH_NEWS";
+      case 'news':
+        actionName = 'FETCH_NEWS';
         break;
-      case "ask":
-        actionName = "FETCH_ASK";
+      case 'ask':
+        actionName = 'FETCH_ASK';
         break;
-      case "jobs":
-        actionName = "FETCH_JOBS";
+      case 'jobs':
+        actionName = 'FETCH_JOBS';
         break;
     }
 
     this.$store.dispatch(actionName);
-  }
+  },
 };
 </script>
 

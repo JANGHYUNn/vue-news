@@ -1,15 +1,16 @@
 <template>
   <div>
     <section>
-      <div class="user-container">
-        <div>
-          <i class="fas fa-user"></i>
+      <user-profile>
+        <div slot="username">
+          <router-link :to="`/vue-news/user/${itemInfo.user}`">{{
+            itemInfo.user
+          }}</router-link>
         </div>
-        <div class="user-discription">
-          <router-link :to="`/user/${itemInfo.user}`">{{ itemInfo.user }}</router-link>
-          <div class="time">{{ itemInfo.time_ago }}</div>
-        </div>
-      </div>
+        <template slot="time">
+          {{ itemInfo.time_ago }}
+        </template>
+      </user-profile>
       <h2>{{ itemInfo.title }}</h2>
     </section>
 
@@ -20,35 +21,23 @@
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue';
+
 export default {
+  components: {
+    UserProfile,
+  },
   computed: {
     itemInfo() {
       return this.$store.state.item;
-    }
+    },
   },
   created() {
     const itemId = this.$route.params.id;
 
-    this.$store.dispatch("FETCH_ITEM", itemId);
-  }
+    this.$store.dispatch('FETCH_ITEM', itemId);
+  },
 };
 </script>
 
-<style scoped>
-.user-container {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-}
-.fa-user {
-  font-size: 2.5rem;
-}
-
-.user-discription {
-  padding-left: 8px;
-}
-
-.time {
-  font-size: 0.7rem;
-}
-</style>
+<style scoped></style>

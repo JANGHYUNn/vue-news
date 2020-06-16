@@ -6,28 +6,27 @@ import actions from './actions.js';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-    state: {
-        news: [],
-        ask: [],
-        jobs: [],
-        user: {},
-        item: []
+  state: {
+    news: [],
+    ask: [],
+    jobs: [],
+    user: {},
+    item: {},
+  },
+  mutations,
+  actions,
+  getters: {
+    fetchedAsk(state) {
+      return state.ask;
     },
-    mutations,
-    actions,
-    getters: {
-        fetchedAsk(state) {
-            return state.ask;
-        },
-        fetchedNews(state) {
-            return state.news;
-        },
-        fetchedJobs(state) {
-            return state.jobs;
-        },
-        fetchedUser(state) {
-            return state.user;
-        }
-    }
-})
-
+    fetchedNews(state) {
+      return state.news;
+    },
+    fetchedJobs(state) {
+      return state.jobs;
+    },
+    fetchedUser(state) {
+      return state.user;
+    },
+  },
+});
