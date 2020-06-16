@@ -8,7 +8,7 @@
           }}</router-link>
         </div>
         <template slot="time">
-          {{ itemInfo.time_ago }}
+          {{ 'poted ' + itemInfo.time_ago }}
         </template>
       </user-profile>
       <h2>{{ itemInfo.title }}</h2>
