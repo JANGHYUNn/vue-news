@@ -6,7 +6,7 @@ import {
 
 export default {
   FETCH_USER({ commit }, username) {
-    fetchUserInfo(username)
+    return fetchUserInfo(username)
       .then(({ data }) => {
         commit('SET_USER', data);
       })
@@ -15,7 +15,7 @@ export default {
       });
   },
   FETCH_ITEM({ commit }, itemId) {
-    fetchItemInfo(itemId)
+    return fetchItemInfo(itemId)
       .then(({ data }) => {
         commit('SET_ITEM', data);
       })
@@ -24,7 +24,7 @@ export default {
       });
   },
   FETCH_LIST({ commit }, pageName) {
-    fetchList(pageName)
+    return fetchList(pageName)
       .then(({ data }) => {
         commit('SET_LIST', data)
       })

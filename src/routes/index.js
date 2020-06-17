@@ -5,7 +5,9 @@ import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 import ItemView from '../views/ItemView';
 import UserView from '../views/UserView';
+import bus from '../utils/bus.js';
 // import CreateListView from '../views/CreateListView.js';
+import { store } from '../store/index.js';
 
 Vue.use(VueRouter);
 
@@ -44,3 +46,17 @@ export const router = new VueRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  console.log(to.name);
+  bus.$emit("start:spinner");
+  store
+    .dispatch("FETCH_LIST", to.name)
+    .then(() => {
+
+      next();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+})
